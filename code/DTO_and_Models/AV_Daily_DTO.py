@@ -6,4 +6,3 @@ class DTO_Daily_Value:
         self._low = kargs['3. low']
         self._close = kargs['4. close']
         self._volume = kargs['5. volume']
-
