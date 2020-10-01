@@ -23,7 +23,7 @@ class ServerManager():
 
         #Cria o insert statement
         ins = insert(tabela).values(**kargs)
-        # Se conecta à engine e executa o statement
+        #Se conecta à engine e executa o statement
         conn = self.engine.connect()
         conn.execute(ins)
 
@@ -31,29 +31,12 @@ class ServerManager():
         """Função para conseguir as informações na tabela selecionada"""
 
         metadata = MetaData(bind=self.engine)
-
-
+        TableName = tas
 
 
     def CreateTables(self):
         model.Table.metadata.create_all(self.engine)
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 if __name__ == '__main__':
-    chave = {'date': '22/07/2020','open':43.1,'high':33.1,'low':9.1,'close':329,'volume':13}
-    ServerManager().InsertData('IBV_Daily',**chave)
+    ServerManager().CreateTables()

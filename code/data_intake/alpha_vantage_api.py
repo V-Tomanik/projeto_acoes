@@ -10,7 +10,7 @@ class AvDaily():
         self.key = key
         self.symbol = symbol
         self.function = 'TIME_SERIES_DAILY'
-        self.url = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol={}&apikey={}".format(self.symbol, self.key)
+        self.url="https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol={}&apikey={}".format(self.symbol, self.key)
 
     def request(self):
         request = requests.request('GET', url=self.url)
@@ -46,8 +46,7 @@ class AvDailyFleury(AvDaily):
     def __init__(self):
         super().__init__('FLRY3.SAO')
 
-# Americanas
-
+# Ações Americanas
 
 class AvDailyWellsF(AvDaily):
     def __init__(self):
