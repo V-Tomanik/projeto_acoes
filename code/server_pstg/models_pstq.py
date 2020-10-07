@@ -13,8 +13,9 @@ Table = declarative_base()
 class B3Daily(Table):
     """ Tabela Representativa para a API Alpha Vantage Diaria """
 
-    __tablename__ = 'AcoesDiario'
-    id = Column(Integer, primary_key = True)
+    __tablename__ = 'acoesdiario'
+    id = Column(Integer, primary_key = True, autoincrement=True)
+    ticker = Column(String(50))
     date = Column(Date)
     open = Column(Float)
     high = Column(Float)
@@ -23,15 +24,16 @@ class B3Daily(Table):
     volume = Column(Float)
 
     def __repr__(self): #Cria a representação quando tentamos printar os objetos da tabela
-        return '<Date={}, open={}, high={}, low = {}, close = {}, volume ={}'.format(
-            self.date,self.open,self.high,self.low,self.close,self.volume)
+        #todo: Mudar isso
+        return 'id={},ticker={},Date={}, open={}, high={}, low = {}, close = {}, volume ={}'.format(
+            self.id,self.ticker,self.date,self.open,self.high,self.low,self.close,self.volume)
 
 
 class InfoEmpresas(Table):
     """ Tabela para informações das empresas """
 
-    __tablename__ = 'EmpresasInfo'
-    id = Column(Integer, primary_key = True)
+    __tablename__ = 'empresasinfo'
+    id = Column(Integer, primary_key = True, autoincrement=True)
     data_input = Column(Date)
     papel = Column(String(50))
     tipo = Column(String(50))
