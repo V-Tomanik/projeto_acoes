@@ -3,8 +3,8 @@ from bs4 import BeautifulSoup as bs
 
 
 class Crawler():
-"""Classe Pai dos crawlers, extrair a tabela de dados financeiros das páginas do Fundamentus"""
-    
+    """Classe Pai dos crawlers, extrair a tabela de dados financeiros das páginas do Fundamentus"""
+
     def __init__(self,papel):
         self.urls = f"https://www.fundamentus.com.br/detalhes.php?papel={papel}"
         self.header = {'user-agent':'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:79.0) Gecko/20100101 Firefox/79.0'}
@@ -25,13 +25,12 @@ class Crawler():
                         label[n] += f'_{n}'
                     DataPagina[label[n]] = data[n]
 
-        return DataPagina 
-
+        return DataPagina
 
 
 class CrawlerItausa(Crawler):
     def __init__(self):
-        super().__init__('ITSA4') 
+        super().__init__('ITSA4')
 
 
 class CrawlerItub(Crawler):
