@@ -28,6 +28,7 @@ itausa = dto.DTO_Empresa(valores_diario=dados_diario,**dados_empresa)
 
 def create_plot():
 
+    #teste
 
     N = 40
     x = np.linspace(0, 1, N)
