@@ -5,15 +5,15 @@ from bs4 import BeautifulSoup as bs
 class Crawler():
     """Classe Pai dos crawlers, extrair a tabela de dados financeiros das páginas do Fundamentus"""
 
-    def __init__(self,papel):
-        self.urls = f"https://www.fundamentus.com.br/detalhes.php?papel={papel}"
+    def __init__(self):
         self.header = {'user-agent':'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:79.0) Gecko/20100101 Firefox/79.0'}
 
 
-    def run(self):
+    def extract(self,papel):
         """Executa o crawler"""
+        url = f"https://www.fundamentus.com.br/detalhes.php?papel={papel}"
         DataPagina ={}
-        response = requests.get(url = self.urls, headers=self.header).text
+        response = requests.get(url = url, headers=self.header).text
         soup= bs(response,'html.parser')
         for a in soup.find_all('table'):
             for b in a.find_all('tr'):
@@ -27,36 +27,19 @@ class Crawler():
 
         return DataPagina
 
+    def run(self,lista:list):
+        """ Cria um interador(generator) para puxar de todos as empresas uma por vez
 
-class CrawlerItausa(Crawler):
-    def __init__(self):
-        super().__init__('ITSA4')
+            Utiliza a funcionalidade next(generator)
+        """
+        for empresa in lista:
+            yield self.extract(empresa)
 
-
-class CrawlerItub(Crawler):
-    def __init__(self):
-        super().__init__('ITUB4')
-
-
-class CrawlerWeg(Crawler):
-    def __init__(self):
-        super().__init__('WEGE3')
-
-
-class CrawlerSuzano(Crawler):
-    def __init__(self):
-        super().__init__('SUZB3')
-
-
-class CrawlerEngie(Crawler):
-    def __init__(self):
-        super().__init__('EGIE3')
-
-
-class CrawlerFleury(Crawler):
-    def __init__(self):
-        super().__init__('FLRY3')
 
 
 if __name__ == '__main__' :
-  print(CrawlerItausa().run()) 
+    empresas  = ['ITUB4','WEGE3','SUZB3','EGIE3','FLRY3']
+    crw = Crawler().run(empresas)
+    print(next(crw))
+
+
