@@ -8,6 +8,7 @@ class Crawler():
     def __init__(self):
         self.header = {'user-agent':'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:79.0) Gecko/20100101 Firefox/79.0'}
 
+        self.empresas  = ['ITUB4','WEGE3','SUZB3','EGIE3','FLRY3']
 
     def extract(self,papel):
         """Executa o crawler"""
@@ -35,7 +36,8 @@ class Crawler():
         for empresa in lista:
             yield self.extract(empresa)
 
-
+    def __len__(self):
+        return len(self.empresas)
 
 if __name__ == '__main__' :
     empresas  = ['ITUB4','WEGE3','SUZB3','EGIE3','FLRY3']

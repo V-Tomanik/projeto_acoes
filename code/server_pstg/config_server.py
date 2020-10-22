@@ -41,8 +41,9 @@ class ServerManager():
 
 if __name__ == '__main__':
     #ServerManager().CreateTables()
-    dado = [{'ticker':'ITS3','date':'2020/10/02','open':00.1,'high':90,'low':8.1,'close':42.1,'volume':330},{'ticker':'ITS3','date':'2020/10/03','open':37.1,'high':80,'low':5.1,'close':42.1,'volume':500}]
+    #dado = [{'ticker':'ITS3','date':'2020/10/02','open':00.1,'high':90,'low':8.1,'close':42.1,'volume':330},{'ticker':'ITS3','date':'2020/10/03','open':37.1,'high':80,'low':5.1,'close':42.1,'volume':500}]
+    dado = [{'data_input': 2020-10-21, 'papel': 'WEGE3', 'tipo': 'ONN1', 'empresa': 'WEGSAONN1', 'setor': 'MáquinaseEquipamentos', 'valor_mercado': '164.535.000.000', 'ultimo_balanco': '30/09/2020', 'valor_firma': '162.907.000.000', 'n_acoes': '2.098.660.000', 'pl': '78,38', 'lpa': '1,00', 'preco_valorpatr': '14,79', 'p_ativos': '8,64', 'roic': '20,5%', 'roe': '18,9%', 'marg_liq': '13,1%', 'porcentagem_dozemeses': '223,28%'}]
     for i in dado:
-        ServerManager().InsertData('acoesdiario',**i)
+        ServerManager().InsertData('empresasinfo',**i)
     #for i in ServerManager().SelectData("SELECT * from AcoesDiario"):
         #print(i)

@@ -1,13 +1,23 @@
 import os
+from time import sleep
+
 import requests
 from dotenv import load_dotenv
+
 load_dotenv()
 
 
-class AvDaily():
+class AlphaVantage():
+    def __init__(self):
+        self.empresas = ['ITSA4.SAO','ITUB4.SAO','WEGE3.SAO',
+                            'SUZB3.SAO','EGIE3.SAO','FLRY3.SAO','WEGRX']
+
+
+class AvDaily(AlphaVantage):
     """ API da Alpha Vantage para dados diarios"""
 
     def __init__(self):
+        super().__init__()
         self.key = os.environ['key_av']
 
     def request(self,ticket):
@@ -16,15 +26,17 @@ class AvDaily():
         request = requests.request('GET', url=url)
         return request.json()
 
-
     def run(self,lista:list):
-        """ Cria um interador(generator) para puxar de todos os dados das empresas
+        """ Cria um interador(generator) para puxar de todos as empresas uma por vez
 
             Utiliza a funcionalidade next(generator)
         """
         for empresa in lista:
+            sleep(20) #API com limite de 5 req/min
             yield self.request(empresa)
-
+    
+    def __len__(self):
+        return len(self.empresas)
 
 class AvSearch():
     def __init__(self, chave, target):
@@ -42,4 +54,5 @@ class AvSearch():
 
 if __name__ == '__main__':
     lista_ = ['ITSA4.SAO','ITUB4.SAO','WEGE3.SAO','SUZB3.SAO','EGIE3.SAO','FLRY3.SAO','WEGRX']
-    print(next(AvDaily().run(lista_)))
+    api = AvDaily()
+    print(api[1])
