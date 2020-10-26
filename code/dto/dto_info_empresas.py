@@ -77,5 +77,9 @@ class DTO_info_empresas:
         ainda protegendo ela"""
         return self.__dict__
 
+    def get_table(self):
+        return 'empresasinfo'
+
+
 if __name__ == '__main__':
     DTO_info_empresas().input

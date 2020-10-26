@@ -28,20 +28,5 @@ class Crawler():
 
         return DataPagina
 
-    def run(self,lista:list):
-        """ Cria um interador(generator) para puxar de todos as empresas uma por vez
-
-            Utiliza a funcionalidade next(generator)
-        """
-        for empresa in lista:
-            yield self.extract(empresa)
-
-    def __len__(self):
-        return len(self.empresas)
-
 if __name__ == '__main__' :
-    empresas  = ['ITUB4','WEGE3','SUZB3','EGIE3','FLRY3']
-    crw = Crawler().run(empresas)
-    print(next(crw))
-
-
+    pass
