@@ -23,7 +23,11 @@ class AvDaily(AlphaVantage):
         """ Função que faz a solicitação"""
         url=f"https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol={ticket}&apikey={self.key}"
         request = requests.request('GET', url=url)
-        return request.json()
+        request_json = request.json
+        try:    
+            return request['Time Series (Daily)']
+        except KeyError:
+            print(f'Problema AlphaVantage: {request_json}')
 
 class AvSearch():
     def __init__(self, chave, target):

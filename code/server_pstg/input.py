@@ -7,15 +7,15 @@ from code.dto.dto_acoesdiario import DTO_acoes_diario
 api = AvDaily()
 scrap = Crawler()
 for empresa in scrap.empresas:
-    obj_dto_infoempresa = DTO_info_empresas().input(**scrap.extract(empresa))
-    ServerManager().InsertData(obj_dto.get_table(),**obj_dto.output())
+    obj_dto_infoempresa = DTO_info_empresas().input(**scrap.extract(empresa)) #Faz a coleta dos dados
+    ServerManager().InsertData(obj_dto_infoempresa.get_table(),**obj_dto_infoempresa.output()) #Faz o importacao para o banco
     print(f'Importanto dados sobre {empresa}')
 print('Empresas info importado')
 
 for empresa in api.empresas:
-    request = api.request(empresa)['Time Series (Daily)']
+    request = api.request(empresa)
     for key, value in request.items():
-        value['date'] = key
+        value['date'] = key #Adiciono a data como um parametro para ser importado ao banco
         value['ticker'] = empresa
         obj_dto_acoesdiario = DTO_acoes_diario().input(**value)
         ServerManager().InsertData(obj_dto_acoesdiario.get_table(),**obj_dto_acoesdiario.output())

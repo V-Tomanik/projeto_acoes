@@ -32,7 +32,7 @@ class DTO_acoes_diario:
             param:
                 metodo(av)
         """
-        self.ticker = kargs['ticker']
+        self.ticker = kargs['ticker'].split('.')[0]
         self.date = datetime.strptime(kargs['date'],'%Y-%m-%d').date()
         self.open = kargs['1. open']
         self.high = kargs['2. high']

@@ -8,7 +8,7 @@ class Crawler():
     def __init__(self):
         self.header = {'user-agent':'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:79.0) Gecko/20100101 Firefox/79.0'}
 
-        self.empresas  = ['ITUB4','WEGE3','SUZB3','EGIE3','FLRY3']
+        self.empresas  = ['ITSA4','ITUB4','WEGE3','SUZB3','EGIE3','FLRY3']
 
     def extract(self,papel):
         """Executa o crawler"""
@@ -29,4 +29,18 @@ class Crawler():
         return DataPagina
 
 if __name__ == '__main__' :
-    pass
+    c = Crawler()
+    for i in  c.empresas:
+        print(c.extract(i))
+
+
+
+
+
+
+
+
+
+
+
+

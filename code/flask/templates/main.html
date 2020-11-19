@@ -4,54 +4,66 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Projeto Ações</title>
+<style>h1{text-align:center;} </style>
     <link rel ="stylesheet" href = "../static/bootstrap.css">
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
 </head>
-<body>
-	<h1>Página Inicial</h1>
-
-			{% for empresa in empresas %}
+<body style="margin:0px">
+	<h1>Projeto Investimento (V0)</h1>
+	{% for plot,empresa in empresas%}
+	<div class="container">
+	<div class="row">
+		<div class=".col">	
+			<table class="table table-striped table-responsive table-bordered">
+					<tr>
+						<td>Ticker</td>
+						<td>{{empresa.papel}}</td>
+					</tr>
+					<tr>
+						<td>Empresa</td>
+						<td>{{empresa.empresa}}</td>
+					</tr>
+					<tr>
+						<td>Setor</td>
+						<td>{{empresa.setor}}</td>
+					</tr>
+					<tr>
+						<td>Valor de Mercado</td>
+						<td>{{empresa.valor_mercado}}</td>
+					</tr>
+					<tr>
+						<td>Preço/Lucro</td>
+						<td>{{empresa.pl}}</td>
+					</tr>
+					<tr>
+						<td>Lucro por Ação</td>
+						<td>{{empresa.lpa}}</td>
+					</tr>
+					<tr>
+						<td>Preço sobre Ativos</td>
+						<td>{{empresa.p_ativos}}</td>
+					</tr>
+					<tr>
+						<td>ROIC</td>
+						<td>{{empresa.roic}}</td>
+					</tr>
+					<tr>
+						<td>Margem Líquida</td>
+						<td>{{empresa.marg_liq}}</td>
+					</tr>
+			</table>
+		</div>
+    		<div class=".col-xl">
+			<div class="chart" id="bargraph" >
+					<script>
+						var graph = {{plot | safe}}
+						Plotly.plot('bargraph',graph,{});
+					</script>
+			</div>
+		</div>
 	</div>
-        <table class="table table-striped table-responsive table-bordered"
-		style = "float left">
-                	<tr>
-                    		<td>Ticker</td>
-				<td>{{empresa.papel}}</td>
-                	</tr>
-			<tr>
-                    		<td>Empresa</td>
-				<td>{{empresa.empresa}}</td>
-                	</tr>
-			<tr>
-                    		<td>Valor de Mercado</td>
-				<td>{{empresa.valor_mercado}}</td>
-                	</tr>
-			<tr>
-                    		<td>PL</td>
-				<td>{{empresa.pl}}</td>
-                	</tr>
-			<tr>
-                    		<td>Preço sobre Valor Patrimonial</td>
-				<td>{{empresa.preco_valorpatr}}</td>
-                	</tr>
-			<tr>
-                    		<td>Roic</td>
-				<td>{{empresa.roic}}</td>
-                	</tr>
-			<tr>
-                    		<td>Roe</td>
-				<td>{{empresa.roe}}</td>
-                	</tr>
-        </table>
 	</div>
-	<div class="chart" id="bargraph" style = "float right">
-    		<script>
-        		var graphs = {{plot | safe}};
-        		Plotly.plot('bargraph',graphs,{});
-    		</script>
-    	</div>
-
-			{%endfor%}
+	{% endfor %}
 </body>
 </html>
