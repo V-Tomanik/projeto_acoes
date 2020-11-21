@@ -6,10 +6,10 @@ from code.dto.dto_acoesdiario import DTO_acoes_diario
 
 api = AvDaily()
 scrap = Crawler()
-for empresa in scrap.empresas:
-    obj_dto_infoempresa = DTO_info_empresas().input(**scrap.extract(empresa)) #Faz a coleta dos dados
-    ServerManager().InsertData(obj_dto_infoempresa.get_table(),**obj_dto_infoempresa.output()) #Faz o importacao para o banco
-    print(f'Importanto dados sobre {empresa}')
+#for empresa in scrap.empresas:
+#    obj_dto_infoempresa = DTO_info_empresas().input(**scrap.extract(empresa)) #Faz a coleta dos dados
+#    ServerManager().InsertData(obj_dto_infoempresa.get_table(),**obj_dto_infoempresa.output()) #Faz o importacao para o banco
+#    print(f'Importanto dados sobre {empresa}')
 print('Empresas info importado')
 
 for empresa in api.empresas:

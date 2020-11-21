@@ -13,7 +13,7 @@ load_dotenv()
 server = Flask(__name__)
 
 
-@server.route('/')
+@server.route('/flask')
 def home():
     empresas = ['ITSA4','ITUB4','WEGE3','SUZB3','EGIE3','FLRY3']
     linhas = [[pm.graph_daily_candle(f"{empresa}"),pm.graph_daily_stock_prevision(f"{empresa}"),
